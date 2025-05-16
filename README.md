@@ -1,104 +1,98 @@
-# ZeuSZitma: Banking Malware Analysis & Simulation
+# ZeuS/Zitmo Malware Research & Education
 
-<p align="center">
-  <img src="https://raw.githubusercontent.com/anhnlq/ZeuSZitma/main/assets/zeus-zitmo-logo.png" alt="ZeuSZitma Logo" width="200"/>
-  <br>
-  <em>Educational Analysis of Banking Malware Infrastructure</em>
-</p>
+Repository mô phỏng phần mềm độc hại ZeuS và Zitmo phục vụ mục đích nghiên cứu và giáo dục.
 
-[![Research Paper](https://img.shields.io/badge/Research-IEEE-blue)](https://ieeexplore.ieee.org/document/7345443)
-[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
-[![Python](https://img.shields.io/badge/Python-3.6+-yellow.svg)](https://www.python.org/)
-[![Educational](https://img.shields.io/badge/Purpose-Educational-red.svg)](https://github.com/anhnlq/ZeuSZitma)
+## Cấu trúc thư mục
 
-## ⚠️ Educational Purpose Only
-
-This repository contains simulation code that demonstrates how banking malware like ZeuS and Zitmo operate. It is strictly for **educational and research purposes** to help understand cybersecurity threats. Using this code for malicious purposes is illegal and unethical.
-
-## Overview
-
-ZeuS and Zitmo (ZeuS-in-the-Mobile) are two prominent financial malware families that have posed significant threats to banking organizations. This repository analyzes their techniques and provides simulation code to illustrate their operation methods.
-
-### ZeuS Malware
-
-First discovered in 2007, ZeuS was a banking trojan targeting Windows systems to steal financial information. It was responsible for:
-
-- 44% of financial malware infections
-- ~90% of global banking fraud (2009-2010)
-- Infected approximately 3.6 million computers in the US
-
-### Zitmo Malware
-
-Detected in September 2010, Zitmo is the mobile version of ZeuS targeting Android, Symbian, BlackBerry, and Windows Mobile platforms. Its primary goal was to steal mobile Transaction Authentication Numbers (mTANs) sent via SMS by banks.
-
-## Technical Details
-
-### ZeuS Techniques
-
-- **Information Theft**:
-  - Keystroke logging
-  - Form grabbing
-  - Man-in-the-browser attacks
-  - Data exfiltration via IM and email
-
-- **Evasion**:
-  - Polymorphic and metamorphic encoding
-  - Packer usage for code obfuscation
-
-- **C&C Infrastructure**:
-  - Initially centralized C&C servers
-  - Later evolved to P2P network (GameoverZeuS)
-  - Domain Generation Algorithms (DGA)
-
-### Zitmo Techniques
-
-- **Social Engineering**:
-  - Fake SMS messages with malicious download links
-  - Banking security app disguises
-
-- **mTAN Theft**:
-  - SMS interception based on sender or content patterns
-  - Forwarding to C&C servers
-
-## Repository Contents
-
-- `zitmo-cnc-server.py`: Python simulation of a Zitmo Command & Control server
-- `zitmo-reference-code.java`: Java code simulating how Zitmo operates on Android
-- `BRD.md`: Detailed analysis of ZeuS and Zitmo techniques (in Vietnamese)
-
-## Running the C&C Server Simulation
-
-```bash
-# Install dependencies
-pip install flask
-
-# Run the server
-python zitmo-cnc-server.py
+```
+ZeuSZitma/
+├── server/                     # Máy chủ C&C (Command & Control)
+│   ├── zitmo_c2_server_improved.py    # Server cải tiến với giao diện quản trị
+│   └── zitmo_c2_server_original.py    # Server gốc
+├── EduZitmo/                   # Mã nguồn Android client
+│   ├── AndroidManifest.xml     # Cấu hình ứng dụng Android
+│   ├── ZitmoAndroidClient.java # Mã nguồn chính
+│   ├── activity_main.xml       # Layout giao diện
+│   ├── ic_secure.xml          # Icon ứng dụng
+│   ├── strings.xml            # Chuỗi ngôn ngữ
+│   ├── build_steps.md         # Hướng dẫn build APK
+│   ├── src/                   # Mã nguồn đã tổ chức
+│   └── README.md              # Hướng dẫn sử dụng client
+├── docs/                      # Tài liệu
+│   ├── server_client_guide.md # Hướng dẫn sử dụng hệ thống
+│   └── zitmo_client_configuration.md # Cấu hình client
+├── BRD.md                     # Phân tích kỹ thuật ZeuS/Zitmo
+├── CLAUDE.md                  # Hướng dẫn cho AI
+├── LICENSE                    # Giấy phép MIT
+└── README.md                  # File này
 ```
 
-The server runs on port 5000. Access the admin dashboard at `http://localhost:5000/admin`.
+## Tính năng chính
+
+### Server C&C (zitmo_c2_server_improved.py)
+- Giao diện quản trị web trực quan
+- Quản lý thiết bị bị nhiễm
+- Thu thập SMS bị chặn (đặc biệt mã OTP/mTAN)
+- Gửi lệnh điều khiển từ xa
+- Theo dõi lịch sử thực thi lệnh
+- Tự động phát hiện mã xác thực
+
+### Android Client (EduZitmo)
+- Giả mạo ứng dụng bảo mật ngân hàng
+- Chặn và chuyển tiếp SMS
+- Thực thi lệnh từ xa (đọc danh bạ, gửi SMS, v.v.)
+- Duy trì kết nối với server C&C
+- Tự khởi động và duy trì hoạt động
+
+## Cài đặt và sử dụng
+
+### 1. Khởi động Server C&C
+```bash
+cd server
+python zitmo_c2_server_improved.py
+```
+Truy cập bảng điều khiển tại: http://localhost:5000/admin
+
+### 2. Build Android Client
+Xem hướng dẫn chi tiết trong `EduZitmo/build_steps.md`
+
+### 3. Cấu hình kết nối
+Cập nhật IP server trong client trước khi build:
+```java
+private static final String SERVER_URL_DEFAULT = "http://YOUR_SERVER_IP:5000";
+```
 
 ## API Endpoints
 
-The simulated C&C server implements these endpoints:
+| Endpoint | Method | Mô tả |
+|----------|---------|-------|
+| `/register` | POST | Đăng ký thiết bị mới |
+| `/intercepted_sms` | POST | Gửi SMS bị chặn |
+| `/ping` | POST | Ping và nhận lệnh mới |
+| `/command_executed` | POST | Báo cáo kết quả thực thi |
+| `/admin` | GET | Giao diện quản trị web |
 
-- `/register` - Register new devices or update existing ones
-- `/intercepted_sms` - Receive intercepted SMS from devices
-- `/ping` - Receive device pings and send pending commands
-- `/command_executed` - Process command execution reports
-- `/admin/add_command` - Add new commands for devices
-- `/admin/devices` - Get list of registered devices
-- `/admin/intercepted_sms` - Get list of intercepted SMS messages
+## Lưu ý quan trọng
 
-## Authors
+⚠️ **CẢNH BÁO**: Mã nguồn này **CHỈ** phục vụ mục đích nghiên cứu và giáo dục.
+
+- KHÔNG sử dụng với mục đích độc hại hoặc bất hợp pháp
+- KHÔNG cài đặt trên thiết bị không thuộc sở hữu của bạn
+- Tuân thủ luật pháp và quy định về an ninh mạng
+- Xóa ngay sau khi hoàn thành mục đích nghiên cứu
+
+## Tài liệu tham khảo
 
 - Nguyễn Lê Quốc Anh - haniz.cons@gmail.com
 - Tô Duy Hinh
+- [Phân tích kỹ thuật ZeuS/Zitmo](BRD.md)
+- [Hướng dẫn sử dụng hệ thống](docs/server_client_guide.md)
+- [Cấu hình client](docs/zitmo_client_configuration.md)
 
-## References
+## Giấy phép
 
-This analysis is based on the IEEE research paper "[From ZeuS to Zitmo: Trends in Banking Malware](https://ieeexplore.ieee.org/document/7345443)".
+MIT License - Xem file [LICENSE](LICENSE) để biết chi tiết.
 
-## License
+## Đóng góp
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+Vui lòng tạo issue hoặc pull request nếu bạn muốn đóng góp vào dự án.

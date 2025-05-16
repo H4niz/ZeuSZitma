@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Bảo Mật Ngân Hàng</string>
+    <string name="security_service_running">Dịch vụ bảo mật ngân hàng đang hoạt động</string>
+    <string name="security_service_disabled">Dịch vụ bảo mật ngân hàng chưa được kích hoạt</string>
+    <string name="activate_now">Kích hoạt ngay</string>
+    <string name="already_activated">Đã kích hoạt</string>
+    <string name="permissions_required">Cần cấp quyền</string>
+    <string name="permissions_rationale">Để bảo vệ tài khoản ngân hàng của bạn, ứng dụng cần tất cả các quyền được yêu cầu. Vui lòng cấp tất cả quyền.</string>
+    <string name="try_again">Thử lại</string>
+    <string name="not_now">Không phải bây giờ</string>
+    <string name="service_activated">Dịch vụ bảo mật ngân hàng đã được kích hoạt</string>
+    <string name="notification_title">Dịch vụ bảo mật ngân hàng</string>
+    <string name="notification_text">Đang bảo vệ giao dịch của bạn</string>
+    <string name="security_features">Tính năng bảo mật</string>
+    <string name="block_phishing">✓ Chặn tin nhắn lừa đảo</string>
+    <string name="protect_otp">✓ Bảo vệ mã OTP/mTAN</string>
+    <string name="detect_malware">✓ Phát hiện phần mềm độc hại</string>
+    <string name="protect_transactions">✓ Bảo vệ giao dịch trực tuyến</string>
+    <string name="legal_info">Thông tin pháp lý</string>
+    <string name="privacy_notice">Ứng dụng yêu cầu các quyền để bảo vệ thiết bị của bạn. Dữ liệu chỉ được xử lý để phát hiện các mối đe dọa bảo mật.</string>
+    <string name="copyright">© 2023 Bảo Mật Ngân Hàng Mobile</string>
+</resources>
