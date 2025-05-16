@@ -168,6 +168,7 @@ Dự án này được phát hành dưới giấy phép MIT. Xem file [LICENSE](
 - Cộng đồng nghiên cứu bảo mật
 - Các nhà phát triển đã đóng góp
 - Tài liệu tham khảo từ các nguồn mở
+- Đặc biệt, ChatGPT, Claude, Grok, Gemini
 
 ## 📞 Liên hệ
 
