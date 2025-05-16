@@ -83,8 +83,6 @@ private static final String SERVER_URL_DEFAULT = "http://YOUR_SERVER_IP:5000";
 
 ## Tài liệu tham khảo
 
-- Nguyễn Lê Quốc Anh - haniz.cons@gmail.com
-- Tô Duy Hinh
 - [Phân tích kỹ thuật ZeuS/Zitmo](BRD.md)
 - [Hướng dẫn sử dụng hệ thống](docs/server_client_guide.md)
 - [Cấu hình client](docs/zitmo_client_configuration.md)
@@ -92,6 +90,11 @@ private static final String SERVER_URL_DEFAULT = "http://YOUR_SERVER_IP:5000";
 ## Giấy phép
 
 MIT License - Xem file [LICENSE](LICENSE) để biết chi tiết.
+
+## Thực hiện
+
+- Nguyễn Lê Quốc Anh - haniz.cons@gmail.com
+- Tô Duy Hinh
 
 ## Đóng góp
 
